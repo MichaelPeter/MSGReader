@@ -26,8 +26,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Png;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -2434,10 +2434,10 @@ namespace MsgReader
                             using (var iconStream = StreamHelpers.Manager.GetStream())
                             {
                                 icon?.Save(iconStream);
-                                using (var image = Image.FromStream(iconStream))
+                                using (var image = Image.Load(iconStream))
                                 {
                                     var iconFileName = outputFolder + Guid.NewGuid() + ".png";
-                                    image.Save(iconFileName, ImageFormat.Png);
+                                    image.SaveAsPng(iconFileName);
                                     inlineAttachments.Add(new InlineAttachment(iconFileName, attachmentFileName,
                                         fileInfo.FullName));
                                 }

@@ -25,8 +25,7 @@
 //
 
 using System;
-using System.Drawing;
-using System.Drawing.Imaging;
+using SixLabors.ImageSharp;
 using System.IO;
 using MsgReader.Exceptions;
 using MsgReader.Helpers;
@@ -265,10 +264,10 @@ namespace MsgReader.Outlook
                 var bytes = new byte[length];
                 Buffer.BlockCopy(_data, bufferOffset, bytes, 0, length);
                 using (var inputStream = StreamHelpers.Manager.GetStream("Attachment.cs", bytes, 0, bytes.Length))
-                using (var image = Image.FromStream(inputStream))
+                using (var image = Image.Load(inputStream))
                 using (var outputStream = StreamHelpers.Manager.GetStream())
                 {
-                    image.Save(outputStream, ImageFormat.Png);
+                    image.SaveAsPng(outputStream);
                     outputStream.Position = 0;
                     _data = outputStream.ToArray();
                     FileName = "ole0.bmp";
