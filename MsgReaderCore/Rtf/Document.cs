@@ -1147,7 +1147,7 @@ namespace MsgReader.Rtf
                             break;
 
                         case "fnil":
-                            name = SystemFonts.DefaultFont.Name;
+                            name = Document.DefaultFont;
                             nilFlag = true;
                             break;
 
@@ -1179,9 +1179,9 @@ namespace MsgReader.Rtf
                     name = name.Substring(0, name.Length - 1);
 
                 name = name.Trim();
-                    
+
                 if (string.IsNullOrEmpty(name))
-                    name = SystemFonts.DefaultFont.Name;
+                    name = Document.DefaultFont;
 
                 var font = new Font(index, name) { Charset = charset, NilFlag = nilFlag };
                 FontTable.Add(font);
@@ -1363,5 +1363,7 @@ namespace MsgReader.Rtf
             return container.Text;
         }
         #endregion
+
+        private const string DefaultFont = "DefaultFont";
 	}
 }

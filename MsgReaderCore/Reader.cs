@@ -42,6 +42,7 @@ using MsgReader.Helpers;
 using MsgReader.Localization;
 using MsgReader.Mime.Header;
 using MsgReader.Outlook;
+using FreeImageAPI;
 // ReSharper disable FunctionComplexityOverflow
 // ReSharper disable UnusedMember.Global
 
